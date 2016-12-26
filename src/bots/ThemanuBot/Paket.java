@@ -3,7 +3,9 @@ package bots.ThemanuBot;
 import java.nio.ByteBuffer;
 
 public class Paket {
-	//list of protocols
+	/*
+	 * list of protocols
+	 */
 	//ERROR
 	public final static byte ERR_UNKNOWN_PROTOCOL = 0x00;
 	public final static byte ERR_MISSING_PARAMETERS = 0x01;

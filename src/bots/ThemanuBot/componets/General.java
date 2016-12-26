@@ -2,10 +2,10 @@ package bots.ThemanuBot.componets;
 
 import java.net.Socket;
 
-import themanu.Component;
-import themanu.Paket;
+import bots.ThemanuBot.Component;
+import bots.ThemanuBot.Paket;
 
-public class General extends Component{
+public class General extends Component {
 
 	@Override
 	public void recieve(Socket client, Paket paket) {

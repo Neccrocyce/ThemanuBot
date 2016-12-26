@@ -2,7 +2,7 @@ package bridgempp.bot.wrapper;
 
 import java.util.Scanner;
 
-import bridgempp.CalendarBot;
+import bots.ThemanuBot.ThemanuBot;
 import bridgempp.bot.messageformat.MessageFormat;
 
 
@@ -12,13 +12,16 @@ import bridgempp.bot.messageformat.MessageFormat;
  *
  */
 public class BotWrapper {
-	static CalendarBot calbot;
+	static Bot bot;
 	
 	public static void main (String[] args) {
 		Schedule.startExecutorService();
-		//
-		calbot = new CalendarBot();
-		calbot.initializeBot();
+		
+		/*
+		 * initialize the Bot here
+		 */
+		bot = new ThemanuBot();
+		bot.initializeBot();
 		
 		Scanner s = new Scanner(System.in);
 		while (true) {			
@@ -40,15 +43,15 @@ public class BotWrapper {
 	
 	public static void printMessage (Message message, Bot bot) {
 		System.out.println(message.getPlainTextMessage());
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			
-		}	
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			
+//		}	
 	}
 	
 	public static void sendMessage (String msg) {
-		calbot.messageReceived(new Message("bot", msg, MessageFormat.PLAIN_TEXT));
+		bot.messageReceived(new Message("bot", msg, MessageFormat.PLAIN_TEXT));
 	}
 	
 	
