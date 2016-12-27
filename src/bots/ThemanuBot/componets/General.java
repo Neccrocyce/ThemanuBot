@@ -3,12 +3,12 @@ package bots.ThemanuBot.componets;
 import java.net.Socket;
 
 import bots.ThemanuBot.Component;
-import bots.ThemanuBot.Paket;
+import bots.ThemanuBot.Packet;
 
 public class General extends Component {
 
 	@Override
-	public void recieve(Socket client, Paket paket) {
+	public void recieve(Socket client, Packet paket) {
 		// TODO Auto-generated method stub
 		
 	}

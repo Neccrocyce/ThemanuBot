@@ -24,9 +24,9 @@ Comment;Optional: Use this cell for comments;;;;;;;;;;;
 ;;;;;;;;;;;;
 Protocols: Server;;;;;;;;;;;;
 Protocol;Component;Identifier;L4-Protocol;Booleans;Bytes;Ints;Longs;Doubles;Strings;Port*;IN/ OUT*;Comment*
-0x00;ERROR;UNKNOWN_PROTOCOL;TCP;0;0;0;0;0;1;;OUT;
-0x01;;ILLEGAL_PARAMETERS;TCP;0;0;0;0;0;1;;OUT;
-0x02;RESERVED;;;;;;;;;;;
+0x00;ERROR;INVALID_PACKET;;0;0;0;0;0;0;;;this protocol is never used
+0x01;;UNKNOWN_PROTOCOL;TCP;0;0;0;0;0;1;;OUT;
+0x02;RESERVED;ILLEGAL_PARAMETERS;TCP;0;0;0;0;0;1;;OUT;
 0x03;RESERVED;;;;;;;;;;;
 0x04;RESERVED;;;;;;;;;;;
 0x05;RESERVED;;;;;;;;;;;

@@ -4,17 +4,17 @@ import java.io.IOException;
 import java.net.Socket;
 
 public abstract class Component {
+	protected static String[][] protocols;
 	protected TCPSocket tcpSocket = TCPSocket.getInstance();	
 	
 	public Component () {
-		
 	}
 	
 	/**
 	 * 
 	 * @param client
 	 */
-	public abstract void recieve(Socket client, Paket paket);
+	public abstract void recieve(Socket client, Packet paket);
 	
 	/**
 	 * @throws IOException 
@@ -23,7 +23,7 @@ public abstract class Component {
 	 * @param paket
 	 * @throws  
 	 */
-	public void sendTCP (Socket client, Paket p) throws IllegalArgumentException, IOException {
+	public void sendTCP (Socket client, Packet p) throws IllegalArgumentException, IOException {
 		byte[] paket = p.pack();
 		tcpSocket.send(client, paket);
 	}

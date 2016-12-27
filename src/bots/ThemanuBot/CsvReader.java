@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class CsvReader {
 	private static CsvReader instance = null;
 	private String[][] protocols = new String[256][2];
-	private int[][] parameters = new int[256][7];
+	private int[][] parameters = new int[256][6];
 	private String[] l4protocols = new String[256];
-	 
+	
 	
 	private CsvReader () {
 	}
@@ -45,7 +45,7 @@ public class CsvReader {
 		return in;
 	}
 	
-	public boolean isLastModified (File oldFile, File newFile) {
+	private boolean isLastModified (File newFile, File oldFile) {
 		if (oldFile.exists() && newFile.exists()) {
 			return newFile.lastModified() > oldFile.lastModified();
 		}
@@ -54,12 +54,17 @@ public class CsvReader {
 	
 	/**
 	 * 
-	 * @param 
-	 * @return 
-	 * @ throw ArrayIndexOutOfBoundsException if protocols.csv is corrupt
+	 * @param file
+	 * @throws NumberFormatException if protocols.csv is corrupt
 	 */
-	public void extract(File file) throws ArrayIndexOutOfBoundsException, NumberFormatException {
-		String content = read(file);
+	public void extract(File csv1, File csv2) throws NumberFormatException {
+		String content;
+		if(isLastModified(csv1, csv2)) {
+			content = read(csv1);
+		}
+		else {
+			content = read(csv2);
+		}
 		
 		//replaces "," by ";"
 		boolean escaped = false;
@@ -94,7 +99,7 @@ public class CsvReader {
 		}
 	}
 	
-	public String[][] getProtocols () {
+	public String[][] getProtocols() {
 		return protocols;
 	}
 	
