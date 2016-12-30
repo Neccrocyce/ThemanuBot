@@ -7,7 +7,7 @@ Protocol 0x00 to 0x4F are reserved for the Components ERROR and GENERAL;;;;;;;;;
 ;;;;;;;;;;;;
 Usage:;;;;;;;;;;;;
 Protocol;TODO;;;;;;;;;;;
-Component;Name of the Component which uses the protocol (Received packets will be forward to this component) TODO (Empty cells will use the component above);;;;;;;;;;;
+Component;Name of the Component which uses the protocol (Received packets will be forward to this component). Be sure to name it like the respective java class;;;;;;;;;;;
 Identifier;The name where the protocol can be identified by ...TODO;;;;;;;;;;;
 L4-Protocol;Used protocol at the transport layer (TCP, UDP);;;;;;;;;;;
 Booleans;Number of variables of type boolean which the sent packet includes;;;;;;;;;;;
@@ -17,7 +17,7 @@ Longs;Number of variables of type long which the sent packet includes;;;;;;;;;;;
 Doubles;Number of variables of type double which the sent packet includes;;;;;;;;;;;
 Strings;Number of variables of type string which the sent packet includes;;;;;;;;;;;
 Port;ignore;;;;;;;;;;;
-In/ Out;Optional but recommend: The direction the packet are sent. In: Client to Server. Out: Server to Client;;;;;;;;;;;
+In/ Out;Optional but recommended: The direction the packet are sent. In: Client to Server. Out: Server to Client;;;;;;;;;;;
 Comment;Optional: Use this cell for comments;;;;;;;;;;;
 ;;;;;;;;;;;;
 ;;;;;;;;;;;;
@@ -25,8 +25,8 @@ Comment;Optional: Use this cell for comments;;;;;;;;;;;
 Protocols: Server;;;;;;;;;;;;
 Protocol;Component;Identifier;L4-Protocol;Booleans;Bytes;Ints;Longs;Doubles;Strings;Port*;IN/ OUT*;Comment*
 0x00;ERROR;INVALID_PACKET;;0;0;0;0;0;0;;;this protocol is never used
-0x01;;UNKNOWN_PROTOCOL;TCP;0;0;0;0;0;1;;OUT;
-0x02;RESERVED;ILLEGAL_PARAMETERS;TCP;0;0;0;0;0;1;;OUT;
+0x01;ERROR;UNKNOWN_PROTOCOL;TCP;0;0;0;0;0;1;;OUT;
+0x02;ERROR;ILLEGAL_PARAMETERS;TCP;0;0;0;0;0;1;;OUT;
 0x03;RESERVED;;;;;;;;;;;
 0x04;RESERVED;;;;;;;;;;;
 0x05;RESERVED;;;;;;;;;;;
@@ -56,15 +56,15 @@ Protocol;Component;Identifier;L4-Protocol;Booleans;Bytes;Ints;Longs;Doubles;Stri
 0x1D;RESERVED;;;;;;;;;;;
 0x1E;RESERVED;;;;;;;;;;;
 0x1F;RESERVED;;;;;;;;;;;
-0x20;GENERAL;LOGIN_RT;TCP;0;0;0;0;0;3;;IN;Strings: version user password
-0x21;;LOGIN_RY;TCP;2;0;0;0;0;0;;OUT;booleans: userRegistrated correctPassword
-0x22;;UPDATE_RT;TCP;0;0;1;0;0;0;;IN;ints: dateLastUpdate
-0x23;;UPDATE_RY;TCP;0;0;0;0;0;0;;OUT;last message after updates or the only one if no update are available (up-to-date)
-0x24;;STANDBY_RT;TCP;0;0;0;0;0;0;;IN;
-0x25;;STANDBY_RY;TCP;0;0;0;0;0;0;;OUT;response whether STANDBY_RT_UDP was received. after that TCP.close
-0x26;;STANDBY_RT_UDP;UDP;0;0;1;0;0;0;;IN;ints: waitTime. time to wait before replying
-0x27;;STANDBY_RY_UDP;UDP;0;0;0;0;0;0;;OUT;
-0x28;;UPDATE_AVAILABLE;TCP;0;0;0;0;0;0;;OUT;when an update is available and Client is in standby
+0x20;General;LOGIN_RT;TCP;0;0;0;0;0;3;;IN;Strings: version user password
+0x21;General;LOGIN_RY;TCP;2;0;0;0;0;0;;OUT;booleans: userRegistrated correctPassword
+0x22;General;UPDATE_RT;TCP;0;0;1;0;0;0;;IN;ints: dateLastUpdate
+0x23;General;UPDATE_RY;TCP;0;0;0;0;0;0;;OUT;last message after updates or the only one if no update are available (up-to-date)
+0x24;General;STANDBY_RT;TCP;0;0;0;0;0;0;;IN;
+0x25;General;STANDBY_RY;TCP;0;0;0;0;0;0;;OUT;response whether STANDBY_RT_UDP was received. after that TCP.close
+0x26;General;STANDBY_RT_UDP;UDP;0;0;1;0;0;0;;IN;ints: waitTime. time to wait before replying
+0x27;General;STANDBY_RY_UDP;UDP;0;0;0;0;0;0;;OUT;
+0x28;General;UPDATE_AVAILABLE;TCP;0;0;0;0;0;0;;OUT;when an update is available and Client is in standby
 0x29;RESERVED;;;;;;;;;;;
 0x2A;RESERVED;;;;;;;;;;;
 0x2B;RESERVED;;;;;;;;;;;
@@ -104,10 +104,10 @@ Protocol;Component;Identifier;L4-Protocol;Booleans;Bytes;Ints;Longs;Doubles;Stri
 0x4D;RESERVED;;;;;;;;;;;
 0x4E;RESERVED;;;;;;;;;;;
 0x4F;RESERVED;;;;;;;;;;;
-0x50;NEWS;CREATE_RT;TCP;0;0;1;0;0;1;;IN/ OUT;ints: date. Strings: message
-0x51;;CREATE_RY;TCP;0;0;0;0;0;0;;IN/OUT;
-0x52;;EDIT_RT;TCP;0;0;2;0;0;2;;IN/OUT;ints: date dateEdited. Strings: message messageEdited
-0x53;;EDIT_RY;TCP;0;0;0;0;0;0;;IN/OUT;
+0x50;News;CREATE_RT;TCP;0;0;1;0;0;1;;IN/ OUT;ints: date. Strings: message
+0x51;News;CREATE_RY;TCP;0;0;0;0;0;0;;IN/OUT;
+0x52;News;EDIT_RT;TCP;0;0;2;0;0;2;;IN/OUT;ints: date dateEdited. Strings: message messageEdited
+0x53;News;EDIT_RY;TCP;0;0;0;0;0;0;;IN/OUT;
 0x54;RESERVED;;;;;;;;;;;
 0x55;RESERVED;;;;;;;;;;;
 0x56;RESERVED;;;;;;;;;;;

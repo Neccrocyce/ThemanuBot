@@ -39,13 +39,12 @@ public class CsvReader {
 			s.close();
 			
 		} catch (IOException e) {
-			e.printStackTrace();
 			return null;
 		}
 		return in;
 	}
 	
-	private boolean isLastModified (File newFile, File oldFile) {
+	protected boolean isLastModified (File newFile, File oldFile) {
 		if (oldFile.exists() && newFile.exists()) {
 			return newFile.lastModified() > oldFile.lastModified();
 		}
@@ -56,8 +55,9 @@ public class CsvReader {
 	 * 
 	 * @param file
 	 * @throws NumberFormatException if protocols.csv is corrupt
+	 * @throws NullPointerException if file couldnt be loaded
 	 */
-	public void extract(File csv1, File csv2) throws NumberFormatException {
+	public void extract(File csv1, File csv2) throws NumberFormatException, NullPointerException {
 		String content;
 		if(isLastModified(csv1, csv2)) {
 			content = read(csv1);

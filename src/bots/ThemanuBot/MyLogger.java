@@ -32,10 +32,15 @@ public class MyLogger {
 		save();
 	}
 	
+	/**
+	 * logs critical errors and stops Bot
+	 * @param msg
+	 */
 	public static void logCritical (String msg) {
 		log.add(new String[] {"CRITICAL", msg});
 		reduceLog();
 		save();
+		ThemanuBot.stop();
 	}
 	
 	private static void reduceLog () {

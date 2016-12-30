@@ -206,5 +206,9 @@ public class Packet {
 	
 	public void setStrings (String[] strings) {
 		this.strings = strings;
-	}	
+	}
+	
+	public int getProtocol() {
+		return protocol;
+	}
 }
